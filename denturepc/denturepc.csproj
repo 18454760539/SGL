@@ -133,7 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\src\lib\extend\echarts.min.js" />
-    <Content Include="admin\src\views\asd.html" />
+    <Content Include="admin\src\views\login.html" />
+    <Content Include="admin\src\views\register.html" />
     <Content Include="admin\src\warehouseprint.js" />
     <Content Include="admin\gulpfile.js" />
     <Content Include="admin\src\alipay\lib\jquery-1.3.1.js" />
@@ -176,30 +177,43 @@
     <Content Include="admin\src\style\eleTree.css" />
     <Content Include="admin\src\style\timepicker.css" />
     <Content Include="admin\src\style\viewer.min.css" />
-    <Content Include="admin\start\bg.jpg" />
-    <Content Include="admin\start\bg1.jpg" />
-    <Content Include="admin\start\bg2.jpg" />
-    <Content Include="admin\start\bgs.png" />
-    <Content Include="admin\start\bootstrap.css" />
-    <Content Include="admin\start\bootstrap.js" />
-    <Content Include="admin\start\bottom1.png" />
-    <Content Include="admin\start\bottom2.png" />
-    <Content Include="admin\start\close.png" />
-    <Content Include="admin\start\con1.png" />
-    <Content Include="admin\start\con2.png" />
-    <Content Include="admin\start\con3.png" />
-    <Content Include="admin\start\con4.png" />
-    <Content Include="admin\start\custom.css" />
-    <Content Include="admin\start\db.png" />
-    <Content Include="admin\start\easing.js" />
-    <Content Include="admin\start\echarts.min.js" />
-    <Content Include="admin\start\email.png" />
-    <Content Include="admin\start\er.png" />
-    <Content Include="admin\start\font-awesome.css" />
-    <Content Include="admin\start\g1.jpg" />
-    <Content Include="admin\start\g2.jpg" />
-    <Content Include="admin\start\g3.jpg" />
-    <Content Include="admin\start\iconfont.css" />
+    <Content Include="admin\start\assets\css\amazeui.datatables.min.css" />
+    <Content Include="admin\start\assets\css\amazeui.min.css" />
+    <Content Include="admin\start\assets\css\app.css" />
+    <Content Include="admin\start\assets\css\slide-unlock.css" />
+    <Content Include="admin\start\assets\img\logoa.png" />
+    <Content Include="admin\start\assets\img\logob.png" />
+    <Content Include="admin\start\assets\js\amazeui.min.js" />
+    <Content Include="admin\start\assets\js\app.js" />
+    <Content Include="admin\start\assets\js\classie.js" />
+    <Content Include="admin\start\assets\js\jquery.min.js" />
+    <Content Include="admin\start\assets\js\jquery.slideunlock.js" />
+    <Content Include="admin\start\assets\js\theme.js" />
+    <Content Include="admin\start\assets\layer\layer.js" />
+    <Content Include="admin\start\static\bg.jpg" />
+    <Content Include="admin\start\static\bg1.jpg" />
+    <Content Include="admin\start\static\bg2.jpg" />
+    <Content Include="admin\start\static\bgs.png" />
+    <Content Include="admin\start\static\bootstrap.css" />
+    <Content Include="admin\start\static\bootstrap.js" />
+    <Content Include="admin\start\static\bottom1.png" />
+    <Content Include="admin\start\static\bottom2.png" />
+    <Content Include="admin\start\static\close.png" />
+    <Content Include="admin\start\static\con1.png" />
+    <Content Include="admin\start\static\con2.png" />
+    <Content Include="admin\start\static\con3.png" />
+    <Content Include="admin\start\static\con4.png" />
+    <Content Include="admin\start\static\custom.css" />
+    <Content Include="admin\start\static\db.png" />
+    <Content Include="admin\start\static\easing.js" />
+    <Content Include="admin\start\static\echarts.min.js" />
+    <Content Include="admin\start\static\email.png" />
+    <Content Include="admin\start\static\er.png" />
+    <Content Include="admin\start\static\font-awesome.css" />
+    <Content Include="admin\start\static\g1.jpg" />
+    <Content Include="admin\start\static\g2.jpg" />
+    <Content Include="admin\start\static\g3.jpg" />
+    <Content Include="admin\start\static\iconfont.css" />
     <Content Include="admin\start\layui\css\formSelects-v4.css" />
     <Content Include="admin\start\json\addressjson.js" />
     <Content Include="admin\start\layui\css\modules\layui-icon-extend\demo.css" />
@@ -383,20 +397,20 @@
     <Content Include="admin\start\layui\lay\modules\tree.js" />
     <Content Include="admin\start\layui\lay\modules\upload.js" />
     <Content Include="admin\start\layui\lay\modules\util.js" />
-    <Content Include="admin\start\left-1.png" />
-    <Content Include="admin\start\left.png" />
-    <Content Include="admin\start\lingdang.png" />
-    <Content Include="admin\start\logo.png" />
-    <Content Include="admin\start\masonry.pkgd.min.js" />
-    <Content Include="admin\start\move-top.js" />
-    <Content Include="admin\start\owl.carousel.css" />
-    <Content Include="admin\start\responsiveslides.min.js" />
-    <Content Include="admin\start\right-1.png" />
-    <Content Include="admin\start\right.png" />
-    <Content Include="admin\start\Scene.png" />
-    <Content Include="admin\start\search.png" />
-    <Content Include="admin\start\style.css" />
-    <Content Include="admin\start\tick.png" />
+    <Content Include="admin\start\static\left-1.png" />
+    <Content Include="admin\start\static\left.png" />
+    <Content Include="admin\start\static\lingdang.png" />
+    <Content Include="admin\start\static\logo.png" />
+    <Content Include="admin\start\static\masonry.pkgd.min.js" />
+    <Content Include="admin\start\static\move-top.js" />
+    <Content Include="admin\start\static\owl.carousel.css" />
+    <Content Include="admin\start\static\responsiveslides.min.js" />
+    <Content Include="admin\start\static\right-1.png" />
+    <Content Include="admin\start\static\right.png" />
+    <Content Include="admin\start\static\Scene.png" />
+    <Content Include="admin\start\static\search.png" />
+    <Content Include="admin\start\static\style.css" />
+    <Content Include="admin\start\static\tick.png" />
     <Content Include="doc\db.html" />
     <Content Include="doc\sql.txt" />
     <Content Include="Global.asax" />
@@ -410,6 +424,12 @@
     <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.ttf" />
     <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.woff" />
     <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.woff2" />
+    <Content Include="admin\start\assets\fonts\fontawesome-webfont\.eot" />
+    <Content Include="admin\start\assets\fonts\fontawesome-webfont\v\4.6.3.eot" />
+    <Content Include="admin\start\assets\fonts\fontawesome-webfont\v\4.6.3.ttf" />
+    <Content Include="admin\start\assets\fonts\fontawesome-webfont\v\4.6.3.woff" />
+    <Content Include="admin\start\assets\fonts\fontawesome-webfont\v\4.6.3.woff2" />
+    <Content Include="control\indexcontrol.ashx" />
     <None Include="Properties\PublishProfiles\通用发布.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="web.config">
@@ -423,6 +443,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="control\indexcontrol.ashx.cs">
+      <DependentUpon>indexcontrol.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -436,7 +459,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin\src\images\" />
-    <Folder Include="control\" />
     <Folder Include="doc\sucai\" />
   </ItemGroup>
   <PropertyGroup>

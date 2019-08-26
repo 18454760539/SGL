@@ -8,7 +8,7 @@ dt{
   float: right;
 }
 .bg-1 {
-  background: url(/themes/default/img/bg-01.png) no-repeat;
+  background: url(/admin/start/img/bg-01.png) no-repeat;
   background-size: cover ;
   background-position: center center;
 }

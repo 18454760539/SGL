@@ -174,10 +174,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="basemodels\responsejson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="basemodels\" />
     <Folder Include="db\" />
   </ItemGroup>
   <ItemGroup>
