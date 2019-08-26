@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.3.2.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.2.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A29C8BA3-4F50-4DCC-8902-985B9F36C9AD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>denturepc</RootNamespace>
+    <AssemblyName>denturepc</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>true</PublishDatabases>
+    <IncludeAppPool>false</IncludeAppPool>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aliyun.OSS, Version=2.9.0.0, Culture=neutral, PublicKeyToken=0ad4175f0dac0b9b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aliyun.OSS.SDK.2.9.0\lib\Aliyun.OSS.dll</HintPath>
+    </Reference>
+    <Reference Include="Aliyun.TableStore.SDK, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aliyun.TableStore.SDK.4.1.1\lib\net40\Aliyun.TableStore.SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.0\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.0\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SqlSugar, Version=4.9.9.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlSugar.4.9.9.4\lib\SqlSugar.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\src\lib\extend\echarts.min.js" />
+    <Content Include="admin\src\views\asd.html" />
+    <Content Include="admin\src\warehouseprint.js" />
+    <Content Include="admin\gulpfile.js" />
+    <Content Include="admin\src\alipay\lib\jquery-1.3.1.js" />
+    <Content Include="admin\src\alipay\lib\jquery.qrcode.min.js" />
+    <Content Include="admin\src\config.js" />
+    <Content Include="admin\src\controller\aliyun-oss-sdk.min.js" />
+    <Content Include="admin\src\controller\common.js" />
+    <Content Include="admin\src\controller\console.js" />
+    <Content Include="admin\src\controller\contlist.js" />
+    <Content Include="admin\src\controller\forum.js" />
+    <Content Include="admin\src\controller\sample.js" />
+    <Content Include="admin\src\controller\senior.js" />
+    <Content Include="admin\src\controller\set.js" />
+    <Content Include="admin\src\controller\user.js" />
+    <Content Include="admin\src\controller\useradmin.js" />
+    <Content Include="admin\src\controller\workorder.js" />
+    <Content Include="admin\src\lib\extend\city-picker\city-picker.css" />
+    <Content Include="admin\src\lib\extend\city-picker\city-picker.data.js" />
+    <Content Include="admin\src\lib\extend\city-picker\city-picker.js" />
+    <Content Include="admin\src\lib\extend\city-picker\drop-arrow.png" />
+    <Content Include="admin\src\lib\extend\city-picker\Nationaljson.js" />
+    <Content Include="admin\src\lib\extend\city-picker\selectM.js" />
+    <Content Include="admin\src\lib\extend\city-picker\selectN.js" />
+    <Content Include="admin\src\lib\extend\moment.js" />
+    <Content Include="admin\src\lib\extend\tableMerge.js" />
+    <Content Include="admin\src\lib\extend\timePicker.js" />
+    <Content Include="admin\src\lib\extend\viewer.min.js" />
+    <Content Include="admin\src\style\city-picker.css" />
+    <Content Include="admin\src\lib\extend\eleTree.js" />
+    <Content Include="admin\src\style\color\colpick.css" />
+    <Content Include="admin\src\style\color\colpick.js" />
+    <Content Include="admin\src\style\color\jquery.min.js" />
+    <Content Include="admin\src\style\color\jquery.treemenu.css" />
+    <Content Include="admin\src\style\color\jquery.treemenu.js" />
+    <Content Include="admin\src\style\color\normalize.css" />
+    <Content Include="admin\src\style\color\plugin.js" />
+    <Content Include="admin\src\style\color\style.css" />
+    <Content Include="admin\src\style\diqu.js" />
+    <Content Include="admin\src\style\drop-arrow.png" />
+    <Content Include="admin\src\style\eleTree.css" />
+    <Content Include="admin\src\style\timepicker.css" />
+    <Content Include="admin\src\style\viewer.min.css" />
+    <Content Include="admin\start\bg.jpg" />
+    <Content Include="admin\start\bg1.jpg" />
+    <Content Include="admin\start\bg2.jpg" />
+    <Content Include="admin\start\bgs.png" />
+    <Content Include="admin\start\bootstrap.css" />
+    <Content Include="admin\start\bootstrap.js" />
+    <Content Include="admin\start\bottom1.png" />
+    <Content Include="admin\start\bottom2.png" />
+    <Content Include="admin\start\close.png" />
+    <Content Include="admin\start\con1.png" />
+    <Content Include="admin\start\con2.png" />
+    <Content Include="admin\start\con3.png" />
+    <Content Include="admin\start\con4.png" />
+    <Content Include="admin\start\custom.css" />
+    <Content Include="admin\start\db.png" />
+    <Content Include="admin\start\easing.js" />
+    <Content Include="admin\start\echarts.min.js" />
+    <Content Include="admin\start\email.png" />
+    <Content Include="admin\start\er.png" />
+    <Content Include="admin\start\font-awesome.css" />
+    <Content Include="admin\start\g1.jpg" />
+    <Content Include="admin\start\g2.jpg" />
+    <Content Include="admin\start\g3.jpg" />
+    <Content Include="admin\start\iconfont.css" />
+    <Content Include="admin\start\layui\css\formSelects-v4.css" />
+    <Content Include="admin\start\json\addressjson.js" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\demo.css" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\demo_index.html" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.css" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.js" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.svg" />
+    <Content Include="admin\src\index.js" />
+    <Content Include="admin\src\lib\admin.js" />
+    <Content Include="admin\src\lib\extend\echarts.js" />
+    <Content Include="admin\src\lib\extend\echartsTheme.js" />
+    <Content Include="admin\src\lib\view.js" />
+    <Content Include="admin\src\style\admin.css" />
+    <Content Include="admin\src\style\color\colpick.css" />
+    <Content Include="admin\src\style\color\colpick.js" />
+    <Content Include="admin\src\style\color\jquery.min.js" />
+    <Content Include="admin\src\style\color\jquery.treemenu.css" />
+    <Content Include="admin\src\style\color\jquery.treemenu.js" />
+    <Content Include="admin\src\style\color\normalize.css" />
+    <Content Include="admin\src\style\color\plugin.js" />
+    <Content Include="admin\src\style\color\style.css" />
+    <Content Include="admin\src\style\login.css" />
+    <Content Include="admin\src\style\nav.css" />
+    <Content Include="admin\src\style\res\template\character.jpg" />
+    <Content Include="admin\src\style\res\template\huge.jpg" />
+    <Content Include="admin\src\style\res\template\portrait.png" />
+    <Content Include="admin\src\style\template.css" />
+    <Content Include="admin\start\index.html" />
+    <Content Include="admin\start\json\console\prograss.js" />
+    <Content Include="admin\start\json\console\top-card.js" />
+    <Content Include="admin\start\json\console\top-search.js" />
+    <Content Include="admin\start\json\content\comment.js" />
+    <Content Include="admin\start\json\content\list.js" />
+    <Content Include="admin\start\json\content\tags.js" />
+    <Content Include="admin\start\json\forum\list.js" />
+    <Content Include="admin\start\json\forum\replys.js" />
+    <Content Include="admin\start\json\layer\photos.js" />
+    <Content Include="admin\start\json\layim\getList.js" />
+    <Content Include="admin\start\json\layim\getMembers.js" />
+    <Content Include="admin\start\json\mall\order.js" />
+    <Content Include="admin\start\json\menu.js" />
+    <Content Include="admin\start\json\message\all.js" />
+    <Content Include="admin\start\json\message\detail.js" />
+    <Content Include="admin\start\json\message\direct.js" />
+    <Content Include="admin\start\json\message\new.js" />
+    <Content Include="admin\start\json\message\notice.js" />
+    <Content Include="admin\start\json\table\demo.js" />
+    <Content Include="admin\start\json\table\demo2.js" />
+    <Content Include="admin\start\json\table\demo3.js" />
+    <Content Include="admin\start\json\table\user.js" />
+    <Content Include="admin\start\json\table\user30.js" />
+    <Content Include="admin\start\json\upload\demo.js" />
+    <Content Include="admin\start\json\useradmin\mangadmin.js" />
+    <Content Include="admin\start\json\useradmin\role.js" />
+    <Content Include="admin\start\json\useradmin\webuser.js" />
+    <Content Include="admin\start\json\user\forget.js" />
+    <Content Include="admin\start\json\user\login.js" />
+    <Content Include="admin\start\json\user\logout.js" />
+    <Content Include="admin\start\json\user\reg.js" />
+    <Content Include="admin\start\json\user\resetpass.js" />
+    <Content Include="admin\start\json\user\session.js" />
+    <Content Include="admin\start\json\user\sms.js" />
+    <Content Include="admin\start\json\workorder\demo.js" />
+    <Content Include="admin\start\json\说明.txt" />
+    <Content Include="admin\start\layui\css\layui.css" />
+    <Content Include="admin\start\layui\css\layui.mobile.css" />
+    <Content Include="admin\start\layui\css\modules\code.css" />
+    <Content Include="admin\start\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="admin\start\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="admin\start\layui\css\modules\layer\default\icon.png" />
+    <Content Include="admin\start\layui\css\modules\layer\default\layer.css" />
+    <Content Include="admin\start\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="admin\start\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="admin\start\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="admin\start\layui\css\modules\layim\html\chatlog.html" />
+    <Content Include="admin\start\layui\css\modules\layim\html\find.html" />
+    <Content Include="admin\start\layui\css\modules\layim\html\msgbox.html" />
+    <Content Include="admin\start\layui\css\modules\layim\layim.css" />
+    <Content Include="admin\start\layui\css\modules\layim\mobile\layim.css" />
+    <Content Include="admin\start\layui\css\modules\layim\skin\1.jpg" />
+    <Content Include="admin\start\layui\css\modules\layim\skin\2.jpg" />
+    <Content Include="admin\start\layui\css\modules\layim\skin\3.jpg" />
+    <Content Include="admin\start\layui\css\modules\layim\skin\4.jpg" />
+    <Content Include="admin\start\layui\css\modules\layim\skin\5.jpg" />
+    <Content Include="admin\start\layui\css\modules\layim\skin\logo.jpg" />
+    <Content Include="admin\start\layui\css\modules\layim\voice\default.mp3" />
+    <Content Include="admin\start\layui\font\iconfont.svg" />
+    <Content Include="admin\start\layui\formSelects-v4.css" />
+    <Content Include="admin\start\layui\formSelects-v4.js" />
+    <Content Include="admin\start\layui\images\face\0.gif" />
+    <Content Include="admin\start\layui\images\face\1.gif" />
+    <Content Include="admin\start\layui\images\face\10.gif" />
+    <Content Include="admin\start\layui\images\face\11.gif" />
+    <Content Include="admin\start\layui\images\face\12.gif" />
+    <Content Include="admin\start\layui\images\face\13.gif" />
+    <Content Include="admin\start\layui\images\face\14.gif" />
+    <Content Include="admin\start\layui\images\face\15.gif" />
+    <Content Include="admin\start\layui\images\face\16.gif" />
+    <Content Include="admin\start\layui\images\face\17.gif" />
+    <Content Include="admin\start\layui\images\face\18.gif" />
+    <Content Include="admin\start\layui\images\face\19.gif" />
+    <Content Include="admin\start\layui\images\face\2.gif" />
+    <Content Include="admin\start\layui\images\face\20.gif" />
+    <Content Include="admin\start\layui\images\face\21.gif" />
+    <Content Include="admin\start\layui\images\face\22.gif" />
+    <Content Include="admin\start\layui\images\face\23.gif" />
+    <Content Include="admin\start\layui\images\face\24.gif" />
+    <Content Include="admin\start\layui\images\face\25.gif" />
+    <Content Include="admin\start\layui\images\face\26.gif" />
+    <Content Include="admin\start\layui\images\face\27.gif" />
+    <Content Include="admin\start\layui\images\face\28.gif" />
+    <Content Include="admin\start\layui\images\face\29.gif" />
+    <Content Include="admin\start\layui\images\face\3.gif" />
+    <Content Include="admin\start\layui\images\face\30.gif" />
+    <Content Include="admin\start\layui\images\face\31.gif" />
+    <Content Include="admin\start\layui\images\face\32.gif" />
+    <Content Include="admin\start\layui\images\face\33.gif" />
+    <Content Include="admin\start\layui\images\face\34.gif" />
+    <Content Include="admin\start\layui\images\face\35.gif" />
+    <Content Include="admin\start\layui\images\face\36.gif" />
+    <Content Include="admin\start\layui\images\face\37.gif" />
+    <Content Include="admin\start\layui\images\face\38.gif" />
+    <Content Include="admin\start\layui\images\face\39.gif" />
+    <Content Include="admin\start\layui\images\face\4.gif" />
+    <Content Include="admin\start\layui\images\face\40.gif" />
+    <Content Include="admin\start\layui\images\face\41.gif" />
+    <Content Include="admin\start\layui\images\face\42.gif" />
+    <Content Include="admin\start\layui\images\face\43.gif" />
+    <Content Include="admin\start\layui\images\face\44.gif" />
+    <Content Include="admin\start\layui\images\face\45.gif" />
+    <Content Include="admin\start\layui\images\face\46.gif" />
+    <Content Include="admin\start\layui\images\face\47.gif" />
+    <Content Include="admin\start\layui\images\face\48.gif" />
+    <Content Include="admin\start\layui\images\face\49.gif" />
+    <Content Include="admin\start\layui\images\face\5.gif" />
+    <Content Include="admin\start\layui\images\face\50.gif" />
+    <Content Include="admin\start\layui\images\face\51.gif" />
+    <Content Include="admin\start\layui\images\face\52.gif" />
+    <Content Include="admin\start\layui\images\face\53.gif" />
+    <Content Include="admin\start\layui\images\face\54.gif" />
+    <Content Include="admin\start\layui\images\face\55.gif" />
+    <Content Include="admin\start\layui\images\face\56.gif" />
+    <Content Include="admin\start\layui\images\face\57.gif" />
+    <Content Include="admin\start\layui\images\face\58.gif" />
+    <Content Include="admin\start\layui\images\face\59.gif" />
+    <Content Include="admin\start\layui\images\face\6.gif" />
+    <Content Include="admin\start\layui\images\face\60.gif" />
+    <Content Include="admin\start\layui\images\face\61.gif" />
+    <Content Include="admin\start\layui\images\face\62.gif" />
+    <Content Include="admin\start\layui\images\face\63.gif" />
+    <Content Include="admin\start\layui\images\face\64.gif" />
+    <Content Include="admin\start\layui\images\face\65.gif" />
+    <Content Include="admin\start\layui\images\face\66.gif" />
+    <Content Include="admin\start\layui\images\face\67.gif" />
+    <Content Include="admin\start\layui\images\face\68.gif" />
+    <Content Include="admin\start\layui\images\face\69.gif" />
+    <Content Include="admin\start\layui\images\face\7.gif" />
+    <Content Include="admin\start\layui\images\face\70.gif" />
+    <Content Include="admin\start\layui\images\face\71.gif" />
+    <Content Include="admin\start\layui\images\face\8.gif" />
+    <Content Include="admin\start\layui\images\face\9.gif" />
+    <Content Include="admin\start\layui\layui.all.js" />
+    <Content Include="admin\start\layui\layui.js" />
+    <Content Include="admin\start\layui\lay\modules\carousel.js" />
+    <Content Include="admin\start\layui\lay\modules\code.js" />
+    <Content Include="admin\start\layui\lay\modules\colorpicker.js" />
+    <Content Include="admin\start\layui\lay\modules\element.js" />
+    <Content Include="admin\start\layui\lay\modules\flow.js" />
+    <Content Include="admin\start\layui\lay\modules\form.js" />
+    <Content Include="admin\start\layui\lay\modules\jquery.js" />
+    <Content Include="admin\start\layui\lay\modules\laydate.js" />
+    <Content Include="admin\start\layui\lay\modules\layedit.js" />
+    <Content Include="admin\start\layui\lay\modules\layer.js" />
+    <Content Include="admin\start\layui\lay\modules\layim.js" />
+    <Content Include="admin\start\layui\lay\modules\laypage.js" />
+    <Content Include="admin\start\layui\lay\modules\laytpl.js" />
+    <Content Include="admin\start\layui\lay\modules\mobile.js" />
+    <Content Include="admin\start\layui\lay\modules\rate.js" />
+    <Content Include="admin\start\layui\lay\modules\slider.js" />
+    <Content Include="admin\start\layui\lay\modules\table.js" />
+    <Content Include="admin\start\layui\lay\modules\tree.js" />
+    <Content Include="admin\start\layui\lay\modules\upload.js" />
+    <Content Include="admin\start\layui\lay\modules\util.js" />
+    <Content Include="admin\start\left-1.png" />
+    <Content Include="admin\start\left.png" />
+    <Content Include="admin\start\lingdang.png" />
+    <Content Include="admin\start\logo.png" />
+    <Content Include="admin\start\masonry.pkgd.min.js" />
+    <Content Include="admin\start\move-top.js" />
+    <Content Include="admin\start\owl.carousel.css" />
+    <Content Include="admin\start\responsiveslides.min.js" />
+    <Content Include="admin\start\right-1.png" />
+    <Content Include="admin\start\right.png" />
+    <Content Include="admin\start\Scene.png" />
+    <Content Include="admin\start\search.png" />
+    <Content Include="admin\start\style.css" />
+    <Content Include="admin\start\tick.png" />
+    <Content Include="doc\db.html" />
+    <Content Include="doc\sql.txt" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="admin\package.json" />
+    <Content Include="admin\start\layui\css\modules\layim\html\getmsg.json" />
+    <Content Include="admin\start\layui\font\iconfont.eot" />
+    <Content Include="admin\start\layui\font\iconfont.ttf" />
+    <Content Include="admin\start\layui\font\iconfont.woff" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.eot" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.ttf" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.woff" />
+    <Content Include="admin\start\layui\css\modules\layui-icon-extend\iconfont.woff2" />
+    <None Include="Properties\PublishProfiles\通用发布.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\denturebll\denturebll.csproj">
+      <Project>{943dd1b0-8f95-4be0-beb1-dbbb50865c0f}</Project>
+      <Name>denturebll</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="admin\src\images\" />
+    <Folder Include="control\" />
+    <Folder Include="doc\sucai\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>
+          </DevelopmentServerVPath>
+          <IISUrl>http://localhost:50552/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.2.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.2.1\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

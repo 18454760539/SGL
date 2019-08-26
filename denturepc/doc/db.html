@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数据库表结构</title>
+    <meta charset="utf-8" />
+    <link href="/admin/start/layui/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+        .aa {
+            text-align: left; 
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <div class="layui-form layui-form-pane" style="margin: 10px 0px 0px 15px;">
+        <div class="layui-form-item layui-inline" style="width:250px;margin:-10px 0px 0px 0px;">
+            <label class="layui-form-label">选择数据库</label>
+            <div class="layui-input-block">
+                <select name="dbselect" id="dbselect" lay-filter="dbselect">
+                    <option value="denture">denture</option>
+                    <option value="kefudb">kefudb</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-inline" style="width:250px;margin:-10px 0px 0px 0px;">
+            <label class="layui-form-label">检索</label>
+            <div class="layui-input-block">
+                <input type="text" id="tableSearch" name="tableSearch" lay-verify="inputsearch" onkeydown="javascript: if (event.keyCode == 13) { tablelistint($('#dbselect').val()); };" required="" placeholder="条件" class="layui-input" />
+            </div>
+        </div>
+        <div class="layui-form-item layui-inline" style="width:250px;margin:-10px 0px 0px 0px;" pane>
+            <label class="layui-form-label">风格</label>
+            <div class="layui-input-block">
+                <input type="checkbox" id="table_style_input" lay-filter="table_style_input" lay-skin="switch" lay-text="大|小">
+            </div>
+        </div>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <div class="layui-col-md4">
+                <div id="tablelist" lay-filter="tablelist"></div>
+            </div>
+            <div class="layui-col-md8">
+                <div style="width:calc(100% - 20px);margin:0px 0px 0px 10px;"> 
+                    <div id="fieldlist" lay-filter="fieldlist"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        ::-webkit-scrollbar{width: 3px; height: 7px;}
+        ::-webkit-scrollbar-button:vertical{display: none;}
+        ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner{background-color: #e2e2e2;}
+        ::-webkit-scrollbar-thumb{border-radius: 0; background-color: rgba(0,0,0,.3);}
+        ::-webkit-scrollbar-thumb:vertical:hover{background-color: rgba(0,0,0,.35);}
+        ::-webkit-scrollbar-thumb:vertical:active{background-color: rgba(0,0,0,.38);}
+        .table-display .layui-table-tool-self {display:none;}
+    </style>
+    <script src="/admin/start/layui/layui.js"></script>
+
+    <script type="text/javascript">
+        var table_style = "sm";
+        var w = document.documentElement.clientWidth;
+        var form, table, $, admin;
+        layui.use(['form', 'table','jquery'], function () {
+            form = layui.form;
+            table = layui.table;
+            admin = layui.admin;
+            $ = layui.jquery;
+            if (w > 1366) {
+                table_style = "";
+                $("#table_style_input").attr("checked", true);
+                form.render('checkbox');
+            }
+            tablelistint("denture");//渲染数据库对应表
+            dbselect();//监听数据库选择
+            tablelistrowclick();//监听行单击事件
+
+            form.on('switch(table_style_input)', function (data) {
+                if (data.elem.checked == true) {
+                    table_style = "";
+                }
+                if (data.elem.checked == false) {
+                    table_style = "sm";
+                }
+                tablelistint($('#dbselect').val());
+            });
+        });
+
+        //数据库对应表渲染
+        function tablelistint(dbname) {
+            table.render({
+                elem: '#tablelist'
+                , id: 'tablelist'
+                , height: 'full-93'
+                , url: '/control/tools/db.ashx?functiontype=dbtablelist' //数据接口
+                , where: {
+                    dbname: dbname,
+                    tableSearch:$('#tableSearch').val()
+                }
+                , page: false //开启分页
+                , even: false //隔行变色
+                , toolbar: '<div>数据库对应表</div>'
+                , cols: [[ //表头
+                     { field: 'table_name', title: '表名',  style: 'cursor:pointer;' }
+                    , { field: 'table_comment', title: '表注释', style: 'cursor:pointer;' }
+                    , { field: 'table_rows', title: '数量', style: 'cursor:pointer;', width: 60 }
+                    , {
+                        field: 'warehouseitem_pictureurl', align: "center", width: 90, title: '操作', templet: function () {
+                            return '<a class="layui-btn layui-btn-xs" lay-event="delete">清空</a>';
+                        }
+                    }
+                ]]
+                , size: table_style
+                , done: function (res) {
+                    if (res.code == 1001) {
+                        admin.exit();
+                    }
+                }
+            });
+
+            //监听行单击事件
+            table.on('tool(tablelist)', function (obj) {
+                if (obj.event === "delete") {
+                    $.ajax({
+                        type: "get",
+                        url: "/control/tools/db.ashx",
+                        data: {
+                            functiontype: "delete",
+                            tablename: obj.data.table_name,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.code == 0) {
+                                layer.msg('清除成功!', { icon: 1, time: 2000 }); return;
+                            }
+                            layer.alert("清除失败：" + data.msg, { icon: 5, skin: 'layer-ext-moon' });
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            layer.alert('清除失败,错误原因:' + errorThrown + XMLHttpRequest + textStatus, { icon: 5, shade: 0.08 });
+                        }
+                    });
+                }
+            });
+        }
+
+        //监听行单击事件
+        function tablelistrowclick()
+        {
+            table.on('rowDouble(tablelist)', function (obj) {
+                $("div[lay-id='tablelist'] tr").removeClass("layui-table-click");
+                obj.tr.addClass('layui-table-click');
+                dbtablefieldlist(obj.data.table_name);
+            });
+        }
+
+        //获取表字段信息
+        function dbtablefieldlist(table_name) {
+            table.render({
+                elem: '#fieldlist'
+                , id: 'fieldlist'
+                , height: 'full-93'
+                , url: '/control/tools/db.ashx' //数据接口
+                , where: {
+                    functiontype: "dbtablefieldlist",
+                    tablename: table_name,
+                    dbname: $("#dbselect").val()
+                }
+                , page: false //开启分页
+                , even: false //隔行变色
+                , toolbar: '<div>表对应字段</div>'
+                , cols: [[ //表头
+                    { field: 'column_name', title: '字段名称', style: 'cursor:pointer;', }
+                    , { field: 'column_comment', title: '字段注释', style: 'cursor:pointer;', }
+                    , { field: 'column_type', title: '字段类型', style: 'cursor:pointer;', width: 110 }
+                ]]
+                , size: table_style
+                , done: function (res) {
+                    let cols = new Array();
+                    let colsarr = new Array();
+                    for (var i = 0; i < res.data.length; i++) {
+                        let obj = new Object();
+                        obj.field = res.data[i].column_name;
+                        obj.title = res.data[i].column_comment;
+                        obj.style = "cursor:pointer;";
+                        colsarr.push(obj);
+                    }
+                    cols.push(colsarr);
+                    var w = document.documentElement.clientWidth;
+                    var h = document.documentElement.clientHeight;
+                    table.on('rowDouble(fieldlist)', function () {
+                        layer.open({
+                            title: "查询数据",
+                            type: 1,
+                            area: [w + 'px', h + 'px'],
+                            content: $('#datalist_html').html(),
+                            resize: true,
+                            scrollbar: false,
+                            fixed: false,
+                            btn: ['关闭'],
+                            //保存订单按钮事件
+                            yes: function (index) {
+                                layer.close(index);//关闭弹出添加窗口
+                            }
+                            //窗口关闭按钮事件
+                            , cancel: function (index) {
+                                layer.close(index);//关闭弹出添加窗口
+                            }
+                        });
+                        console.log(cols);
+                        dbtabledataist(cols, table_name);
+                    });
+                }
+            });
+        }
+
+        //获取数据
+        function dbtabledataist(cols, table_name) {
+            table.render({
+                elem: '#datalist'
+                , id: 'datalist'
+                , height: 'full-110'
+                , url: '/control/tools/db.ashx' //数据接口
+                , where: {
+                    functiontype: "dbtabledataist",
+                    tablename: table_name,
+                    dbname: $("#dbselect").val()
+                }
+                , page: true //开启分页
+                , limits: [999999999]
+                , limit: 999999999 //默认采用60
+                , even: false //隔行变色
+                , toolbar: '<div>' + table_name + '表对应数据</div>'
+                , cols: cols
+                , size: table_style
+            });
+        }
+
+        //监听数据库选择
+        function dbselect() {
+            form.on('select(dbselect)', function (data) {
+                if (data.value != "")
+                {
+                    tablelistint(data.value);
+                }
+            });
+        }
+    </script>
+
+    <!-- 查询数据 -->
+    <script type="text/html" id="datalist_html">
+        <div class="layui-form layui-form-pane" style="padding:0px 10px 0px 10px;margin-top:-10px;">
+            <table class="layui-hide" id="datalist" lay-filter="datalist"></table>
+        </div>
+    </script>
+
+</body>
+</html>
