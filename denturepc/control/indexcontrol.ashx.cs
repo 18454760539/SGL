@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using denturebll.db;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using Models;
 
 namespace denturepc.control
 {
@@ -37,6 +39,9 @@ namespace denturepc.control
         {
             string emil = context.Request.Params["emil"];
 
+            var db = sugar.GetInstance("mydb");
+            var list = db.Queryable<user>()
+                .ToList();
             //实例化一个发送邮件类。
             MailMessage mailMessage = new MailMessage();
             //发件人邮箱地址，方法重载不同，可以根据需求自行选择。

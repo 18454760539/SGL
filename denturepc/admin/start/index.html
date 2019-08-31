@@ -182,6 +182,19 @@
     </style>
     <body>
         <script type="text/javascript">
+            ad();
+            function ad() {
+                $.ajax({
+                    url: "/control/indexcontrol.ashx?functiontype=fsyzm",
+                    cache: false,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        layer.msg(data.message);
+                        console.log(data)
+                    }
+                });
+            }
                                     function timer(opj) {
                                         $(opj).find('ul').animate({
                                             marginTop: "-3.5rem"
@@ -217,9 +230,9 @@
                                     </ul>
                                 </div>
                             </div>
-</div>
+                            </div>
 
-<div class="main-agile">
+                            <div class="main-agile">
                             <!-- header -->
 
                             <div class="header-bottom">
@@ -243,6 +256,7 @@
                                                         <li class="menu__item"><a href="/whitepaper.pdf" target="_blank" class="menu__link">白皮书</a></li>
                                                         <li class="menu__item"><a href="/admin/src/views/login.html" class="menu__link">登录</a></li>
                                                         <li class="menu__item"><a href="/admin/src/views/register.html" target="_blank">注册</a>
+                                                        <li class="menu__item"><a onclick="ad()" >123</a>
                                                     </ul>
                                                 </nav>
                                             </div>
@@ -251,8 +265,8 @@
                                     </div>
                                 </div>
                             </div>
-</div>
-<div class="slider">
+                            </div>
+                            <div class="slider">
                             <div class="callbacks_container">
                                 <ul class="rslides callbacks callbacks1" id="slider">
                                     <li id="callbacks1_s0" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 1000ms ease-in-out;">

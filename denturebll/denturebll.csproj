@@ -175,11 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="basemodels\responsejson.cs" />
+    <Compile Include="basemodels\user.cs" />
+    <Compile Include="db\sugar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="db\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="web.config" />
     <None Include="web.Debug.config">
