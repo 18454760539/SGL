@@ -25,6 +25,27 @@ namespace Models
         /// Default:0
         /// Nullable:True
         /// </summary>           
-        public int? emil { get; set; }
+        public string email { get; set; }
+
+        /// <summary>
+        /// Desc:推荐人邮箱
+        /// Default:0
+        /// Nullable:True
+        /// </summary>           
+        public string tj_email { get; set; }
+
+        /// <summary>
+        /// Desc:密码
+        /// Default:0
+        /// Nullable:True
+        /// </summary>           
+        public string password { get; set; }
+
+        /// <summary>
+        /// Desc:二级密码
+        /// Default:0
+        /// Nullable:True
+        /// </summary>           
+        public string towpassword { get; set; }
     }
 }

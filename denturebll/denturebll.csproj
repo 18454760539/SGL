@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="basemodels\responsejson.cs" />
+    <Compile Include="basemodels\SerialNumberHelper.cs" />
     <Compile Include="basemodels\user.cs" />
     <Compile Include="db\sugar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

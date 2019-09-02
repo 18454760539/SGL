@@ -88,13 +88,13 @@
     </script>
     <script>
      $('#btnn').click(function () {
-            if (!$("#email").val()) {
-                layer.msg('请输入邮箱账号!');
+         if (!$("#email").val()) {
+             alert('请输入邮箱账号!');
                 return false;
             }
 
             if (!$("#pass").val()) {
-                layer.msg('请输入密码!');
+                alert('请输入密码!');
                 return false;
             }
 
@@ -106,17 +106,16 @@
                 };
                 $.ajax({
                     type: 'post',
-                    url: '/admin/start/index.html',
+                    url: '/control/indexcontrol.ashx?functiontype=login',
                     cache: false,
                     data: params,
                     dataType: 'json',
                     success: function (data) {
-                        layer.msg(data.message);
-                        if (data.code == 200) {
-                            window.setTimeout("window.location='/admin/start/index.html'",1000);
+                        if (data.code == 0) {
+                            window.setTimeout("window.location='/admin/src/views/index.html'",1000);
                             return true;
                         } else {
-                            $("#btnn").removeAttr('disabled');
+                            alert(data.msg);
                         }
 
                     },

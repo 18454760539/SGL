@@ -23,14 +23,81 @@ namespace denturepc.control
             switch (functiontype)
             {
                 case "fsyzm": fsyzm(context); break;
+                case "registered": registered(context); break;//注册
+                case "login": login(context); break;
             }
         }
-        //class MailMessage {
-        //    public MailAddress From { get; set; }
-        //    public List<MailAddress> To { get; set; }
-        //    public string Subject { get; set; }
-        //    public string Body { get; set; }
-        //}
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="context"></param>
+        public void login(HttpContext context)
+        {
+            string email = context.Request.Params["email"];
+            string password = context.Request.Params["password"];
+            var db = sugar.GetInstance("mydb");
+
+            var get = db.Queryable<user>().Where(it => it.email == email).Select(it=> new {
+                it.password,
+                it.ID,
+                it.email
+            }).ToList();
+            if (get.Count == 0)
+            {
+                context.Response.Write(new responsejson(1, "当前邮箱不存在"));
+            }
+            else
+            {
+                if (password != get.Select(it=>it.password).Take(1).First())
+                {
+                    context.Response.Write(new responsejson(1, "账号或密码不正确!"));
+                }
+                else
+                {
+                    context.Response.Write(new responsejson(0, "登录成功"));
+                }
+            }
+
+        }
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="context"></param>
+        public void registered(HttpContext context)
+        {
+            string email = context.Request.Params["email"];
+            string tj_email = context.Request.Params["tj_email"];
+            string password = context.Request.Params["password"];
+            string towpassword = context.Request.Params["towpassword"];
+            var db = sugar.GetInstance("mydb");
+
+            var get = db.Queryable<user>().Where(it => it.email == email).ToList();
+            if (get.Count>0)
+            {
+                context.Response.Write(new responsejson(1, "当前邮箱已注册"));
+            }
+
+
+            List<user> list = new List<user>();
+            user im = new user();
+            im.ID = Convert.ToString(DateTime.Now.ToString("HHmmssMMfffyydd"));
+            im.password = password;
+            im.tj_email = tj_email;
+            im.towpassword = towpassword;
+            im.email = email;
+            list.Add(im);
+            int t2 = db.Insertable(list).ExecuteCommand();
+
+            if (t2 >0)
+            {
+                context.Response.Write(new responsejson(0, "注册成功"));
+            }
+            else
+            {
+                context.Response.Write(new responsejson(1, "注册失败"));
+            }
+
+        }
         /// <summary>
         /// 发送验证码
         /// </summary>
