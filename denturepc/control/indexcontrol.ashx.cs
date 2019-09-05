@@ -25,7 +25,64 @@ namespace denturepc.control
                 case "fsyzm": fsyzm(context); break;
                 case "registered": registered(context); break;//注册
                 case "login": login(context); break;
+                case "transfer": transfer(context); break;
             }
+        }
+        /// <summary>
+        /// 转账
+        /// </summary>
+        /// <param name="context"></param>
+        public void transfer(HttpContext context)
+        {
+            string me = context.Request.Params["me"];
+            string ID = context.Request.Params["ID"];
+            string number = context.Request.Params["number"];
+            var db = sugar.GetInstance("mydb");
+
+            var get = db.Queryable<user>().Where(it => it.ID == me).Select(it => new {
+                ID = it.ID,
+                number = it.number - Convert.ToDecimal(number)
+            }).ToList();
+
+            if (get.Select(it => it.number).Take(1).First() < 0)
+            {
+                context.Response.Write(new responsejson(1, "余额不足"));
+                return;
+            }
+
+            user im = new user();
+            im.ID = get.Select(it => it.ID).Take(1).First();
+            im.number = get.Select(it => it.number).Take(1).First();
+
+            var get1 = db.Queryable<user>().Where(it => it.ID == ID).Select(it => new {
+                ID = it.ID,
+                number = it.number + Convert.ToDecimal(number)
+            }).ToList();
+            user imone = new user();
+            if (get1.Count >0)
+            {
+                imone.ID = get1.Select(it => it.ID).Take(1).First();
+                imone.number = get1.Select(it => it.number).Take(1).First();
+            }
+            else
+            {
+                context.Response.Write(new responsejson(1, "对方ID不存在"));
+                return;
+            }
+
+           
+
+            int t3 = db.Updateable(im).UpdateColumns(it => new { it.number }).ExecuteCommand();
+            int t4 = db.Updateable(imone).UpdateColumns(it => new { it.number }).ExecuteCommand();
+
+            if (t3 > 0 && t4>0)
+            {
+                context.Response.Write(new responsejson(0, "转账成功"));
+            }else
+            {
+                context.Response.Write(new responsejson(1, "转账失败"));
+            }
+
         }
         /// <summary>
         /// 登录
@@ -54,7 +111,7 @@ namespace denturepc.control
                 }
                 else
                 {
-                    context.Response.Write(new responsejson(0, "登录成功"));
+                    context.Response.Write(new responsejson(0,0, "登录成功", get.Select(it =>  new { ID = it.ID }).ToList(),""));
                 }
             }
 

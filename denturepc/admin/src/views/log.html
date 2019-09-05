@@ -1,171 +1,118 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AIC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="/admin/start/assets/css/amazeui.min.css" />
-    <link rel="stylesheet" href="/admin/start/assets/css/amazeui.datatables.min.css" />
-    <link rel="stylesheet" href="/admin/start/assets/css/app.css">
-    <script src="/admin/start/assets/js/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../../start/layui/css/layui.css">
 </head>
-
-<body data-type="exchange">
-    <script src="/admin/start/assets/js/theme.js"></script>
-    <div class="am-g tpl-g">
-        <!-- 头部 -->
-        <header>
-            <!-- logo -->
-            <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="/admin/start/assets/img/logo.png" alt=""></a>
-            </div>
-            <!-- 右侧内容 -->
-            <div class="tpl-header-fluid">
-                <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
-                    <span>
-
-                    </span>
-                </div>
-
-                <!-- 其它功能-->
-                <div class="am-fr tpl-header-navbar">
-                    <ul>
-                        <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>1037838286@qq.com</span> </a>
-                        </li>
-
-                        <!-- 退出 -->
-                        <li class="am-text-sm">
-                            <a href="/admin/src/views/logout.html">
-                                <span class="am-icon-sign-out"></span> 退出
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </header>
-        <!-- 侧边导航栏 -->
-        <div class="left-sidebar">
-            <!-- 用户信息 -->
-            <div class="tpl-sidebar-user-panel">
-                <div class="tpl-user-panel-slide-toggleable">
-                    <div class="tpl-user-panel-profile-picture">
-                        <img src="/admin/start/assets/img/user.png" alt="">
-                    </div>
-                    <span class="user-panel-logged-in-text">
-                        <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                        1037838286@qq.com
-                    </span>
-                    <a href="/admin/src/views/info.html" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 资料完善</a>
-                </div>
-            </div>
-
-            <!-- 菜单 -->
-            <ul class="sidebar-nav">
-
-                <li class="sidebar-nav-link">
-                    <a href="/admin/src/views/index.html">
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header" style="background-color: #393D49;">
+            <div class="layui-logo">layui 后台布局</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a id="en" href="javascript:;">
+                        <!--<img src="http://t.cn/RCzsdCq" class="layui-nav-img">-->
+                        未登录
                     </a>
+                    <!--<dl class="layui-nav-child">
+                        <dd><a href="">首页</a></dd>
+                        <dd><a href="">资料完善</a></dd>
+                        <dd><a href="">我的团队</a></dd>
+                        <dd><a href="">转账</a></dd>
+                        <dd><a href="">转账记录</a></dd>
+                        <dd><a href="">邀请</a></dd>
+                    </dl>-->
                 </li>
-                <li class="sidebar-nav-link">
-                    <a href="/admin/src/views/info.html">
-                        <i class="am-icon-user sidebar-nav-link-logo"></i> 资料完善
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="/admin/src/views/mygroup.html">
-                        <i class="am-icon-group sidebar-nav-link-logo"></i> 我的团队
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="/admin/src/views/group.html">
-                        <i class="am-icon-globe sidebar-nav-link-logo"></i> 二维码
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="/admin/src/views/withdraw.html">
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 提币
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="/admin/src/views/log.html">
-                        <i class="am-icon-credit-card-alt sidebar-nav-link-logo"></i> 财务记录
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="/admin/start/index.html">
-                        <i class="am-icon-undo sidebar-nav-link-logo"></i> 退出登录
-                    </a>
-                </li>
-
+                <li class="layui-nav-item"><a href="">注销</a></li>
             </ul>
         </div>
 
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
 
-        <!-- 内容区域 -->
-        <div class="tpl-content-wrapper">
-
-            <div class="container-fluid am-cf">
-                <div class="row">
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 首页 </div>
-                        <p class="page-header-description">欢迎来到AIC人工智能链，推荐好友得奖励！</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="row-content am-cf">
-                <div class="row">
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                        <div class="widget am-cf">
-                            <div class="widget-head am-cf">
-                                <div class="widget-title  am-cf">财务日志</div>
-                            </div>
-                            <div class="widget-body  am-fr">
-
-                                <div class="am-u-sm-12">
-                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
-                                        <thead>
-                                            <tr>
-                                                <th>类型</th>
-                                                <th>数量</th>
-                                                <th>描述</th>
-                                                <th>日期</th>
-                                                <th>状态</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                                <div class="am-u-lg-12 am-cf">
-                                    <div class="am-fr">
-                                        <ul class="am-pagination tpl-pagination">
-                                            <!-- <li class="am-active"><a href="#">1</a></li>-->
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <li class="layui-nav-item"><a href="../views/index.html">首页</a></li>
+                    <li class="layui-nav-item"><a href="../views/info.html">资料完善</a></li>
+                    <li class="layui-nav-item"><a href="../views/mygroup.html">我的团队</a></li>
+                    <li class="layui-nav-item"><a href="../views/withdraw.html">转账</a></li>
+                    <li class="layui-nav-item  layui-this"><a href="../views/log.html">财务日志</a></li>
+                    <li class="layui-nav-item"><a href="../views/group.html">邀请</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-    </div>
-    <script src="/admin/start/assets/js/amazeui.min.js"></script>
-    <script src="/admin/start/assets/js/app.js"></script>
 
+        <div class="layui-body">
+            <div style="padding: 100px;margin-top:20px;margin-left:20px;width:84%;height:68%; background-color: #F2F2F2;">
+                <fieldset class="layui-elem-field layui-field-title site-title">
+                    <legend><a name="grid">财务日志</a></legend>
+                </fieldset>
+                <div class="layui-row layui-col-space15">
+                    <table class="layui-table" id="caiwutable" style="margin-top:-10px" lay-filter="caiwutable"></table>
+                </div>
+            </div>
+
+            <!--<form class="layui-form layui-form-pane" style="padding:20px;">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="encryptanddecode_encrypt" required lay-verify="required" placeholder="请输入ID" autocomplete="off" class="layui-input" style="width:400px;">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">SGL数量</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="encryptanddecode_decode" autocomplete="off" class="layui-input" style="width:400px;background: #FBFBFB;margin-top:20px;">
+                    </div>
+                </div>
+
+                <button class="layui-btn" lay-submit lay-filter="encryptanddecode_btn" style="width:510px;">立即解密</button>
+            </form>-->
+        </div>
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+    <script src="../../start/layui/layui.js"></script>
+    <script>
+        var table;
+        var element;
+        //JavaScript代码区域
+        layui.use('table'/*, 'table'*/, function () {
+            //element = layui.element;
+            table = layui.table;
+
+            logtablema();
+        });
+        let em = decodeURI(document.cookie).split('=');
+        var aObj = document.getElementById("en");
+        aObj.innerText = em[0];
+        function logtablema() {
+
+            table.render({
+                elem: '#caiwutable'
+                , id: 'caiwutable'
+                //, url: '/demo/table/user/'
+                , data: []
+                // , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [[
+                    { type: 'numbers', event: "edit", align: 'center', title: '序号' }
+                    , { field: 'asd', title: '类型' }
+                    , { field: 'saf', title: '数量' }
+                    , { field: 'sda', title: '描述' }
+                    , { field: 'sda', title: '日期' }
+                    , { field: 'sda', title: '状态' }
+                ]]
+                , height: 'full-340' //高度最大化减去差值
+            });
+        }
+    </script>
 </body>
-
 </html>

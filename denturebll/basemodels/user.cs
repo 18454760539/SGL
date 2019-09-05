@@ -47,5 +47,12 @@ namespace Models
         /// Nullable:True
         /// </summary>           
         public string towpassword { get; set; }
+
+        /// <summary>
+        /// Desc:账户数量
+        /// Default:0
+        /// Nullable:True
+        /// </summary>    
+        public decimal? number { get; set; }
     }
 }

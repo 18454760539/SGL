@@ -111,8 +111,10 @@
                     data: params,
                     dataType: 'json',
                     success: function (data) {
+                        console.log(data)
                         if (data.code == 0) {
-                            window.setTimeout("window.location='/admin/src/views/index.html'",1000);
+                            window.setTimeout("window.location='/admin/src/views/index.html?v=" + $("#email").val() + "'", 1000);
+                            document.cookie = encodeURI($("#email").val() + "=" + data.data[0].ID);
                             return true;
                         } else {
                             alert(data.msg);
