@@ -52,7 +52,7 @@
                     <legend><a name="grid">转账</a></legend>
                 </fieldset>
                 <div class="layui-row layui-col-space15">
-                    <form class="layui-form layui-form-pane" style="padding:20px;">
+                    <div class="layui-form layui-form-pane" style="padding:20px;">
 
                         <div class="layui-form-item">
                             <label class="layui-form-label">ID</label>
@@ -69,8 +69,8 @@
                             </div>
                         </div>
 
-                        <button class="layui-btn" lay-filter="btn" onclick="btnsub()" style="width:100%;">确定</button>
-                    </form>
+                        <button class="layui-btn" onclick="btnsub()" style="width:100%;">确定</button>
+                    </div>
                 </div>
             </div>
             <!--<form class="layui-form layui-form-pane" style="padding:20px;">
@@ -102,10 +102,12 @@
     <script>
         var form;
         var $;
+        var layer;
         //JavaScript代码区域
-        layui.use(['form', 'jquery'], function () {
+        layui.use(['form', 'jquery','layer'], function () {
             form = layui.form;
-            $ = layui.jquery
+            $ = layui.jquery;
+            layer = layui.layer;
         });
         let em = decodeURI(document.cookie).split('=');
         var aObj = document.getElementById("en");
@@ -115,7 +117,7 @@
                 alert('请输入对方ID!');
                 return false;
             }
-            if (!$('input[name="number"]').val()) {
+            if (!$('input[name="number"]').val() || $('input[name="number"]').val()==0) {
                 alert('请输入转账数额!');
                 return false;
             }
@@ -134,11 +136,16 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
                     if (data.code == 0) {
-                        alert(data.msg);
+                        layer.open({
+                            title: '提示'
+                            , content: data.msg
+                        });     
                     } else {
-                        alert(data.msg);
+                        layer.open({
+                            title: '提示'
+                            , content: data.msg
+                        });     
                     }
 
                 },

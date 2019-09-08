@@ -41,7 +41,7 @@ namespace denturepc.control
 
             var get = db.Queryable<user>().Where(it => it.ID == me).Select(it => new {
                 ID = it.ID,
-                number = it.number - Convert.ToDecimal(number)
+                number = (it.number == null?0:it.number) - Convert.ToDecimal(number)
             }).ToList();
 
             if (get.Select(it => it.number).Take(1).First() < 0)
