@@ -9,7 +9,7 @@
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header" style="background-color: #393D49;">
-            <div class="layui-logo">layui 后台布局</div>
+            <div class="layui-logo" id="geren" style="width: 305px;">AIC 个人中心</div>
             <!-- 头部区域（可配合layui已有的水平导航） -->
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
@@ -84,11 +84,25 @@
     <script>
         var table;
         var element;
+        var $;
         //JavaScript代码区域
-        layui.use('table'/*, 'table'*/, function () {
+        layui.use(['table', 'jquery']/*, 'table'*/, function () {
             //element = layui.element;
+            $ = layui.jquery;
             table = layui.table;
-
+            let gr = document.getElementById("geren");
+            $.ajax({
+                type: 'post',
+                url: '/control/indexcontrol.ashx?functiontype=all',
+                cache: false,
+                data: {
+                    email: em[0]
+                },
+                dataType: 'json',
+                success: function (data) {
+                    gr.innerText = "AIC 个人中心（ID：" + data.data[0].ID + "）";
+                },
+            });
             logtablema();
         });
         let em = decodeURI(document.cookie).split('=');

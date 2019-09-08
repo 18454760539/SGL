@@ -54,5 +54,19 @@ namespace Models
         /// Nullable:True
         /// </summary>    
         public decimal? number { get; set; }
+
+        /// <summary>
+        /// Desc:注册时间
+        /// Default:0
+        /// Nullable:True
+        /// </summary>    
+        public DateTime addtime { get; set; }
+
+        /// <summary>
+        /// Desc:账号状态（0：正常，1：封禁）
+        /// Default:0
+        /// Nullable:True
+        /// </summary>    
+        public int? type { get; set; }
     }
 }

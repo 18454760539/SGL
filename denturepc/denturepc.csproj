@@ -130,6 +130,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TopSdk">
+      <HintPath>..\denturebll\bin\TopSdk.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\src\lib\extend\echarts.min.js" />

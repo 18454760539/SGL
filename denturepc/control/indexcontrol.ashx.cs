@@ -7,6 +7,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using Models;
+using System.IO;
+using System.Text;
+using RemotingProtocolParser.HTTP;
+using System.Text.RegularExpressions;
 
 namespace denturepc.control
 {
@@ -26,7 +30,43 @@ namespace denturepc.control
                 case "registered": registered(context); break;//注册
                 case "login": login(context); break;
                 case "transfer": transfer(context); break;
+                case "all": all(context); break;
+                case "td": td(context); break;
             }
+        }
+        /// <summary>
+        /// 获取我的团队
+        /// </summary>
+        /// <param name="context"></param>
+        public void td(HttpContext context)
+        {
+            string tj_email = context.Request.Params["tj_email"];
+            var db = sugar.GetInstance("mydb");
+
+            var get = db.Queryable<user>().Where(it => it.tj_email == tj_email).Select(it => new {
+                it.email,
+                it.addtime
+            }).ToList();
+
+            context.Response.Write(new responsejson(0, get));
+
+        }
+        /// <summary>
+        /// 获取信息
+        /// </summary>
+        /// <param name="context"></param>
+        public void all(HttpContext context)
+        {
+            string em = context.Request.Params["email"];
+            var db = sugar.GetInstance("mydb");
+
+            var get = db.Queryable<user>().Where(it => it.email == em).Select(it => new {
+               it.ID,
+               it.number
+            }).ToList();
+
+            context.Response.Write(new responsejson(0, get));
+
         }
         /// <summary>
         /// 转账
@@ -97,6 +137,7 @@ namespace denturepc.control
             var get = db.Queryable<user>().Where(it => it.email == email).Select(it=> new {
                 it.password,
                 it.ID,
+                it.type,
                 it.email
             }).ToList();
             if (get.Count == 0)
@@ -105,6 +146,11 @@ namespace denturepc.control
             }
             else
             {
+                if (get.Select(it=>it.type).Take(1).First() == 1)
+                {
+                    context.Response.Write(new responsejson(1, "账号异常，请联系客服"));
+                    return;
+                }
                 if (password != get.Select(it=>it.password).Take(1).First())
                 {
                     context.Response.Write(new responsejson(1, "账号或密码不正确!"));
@@ -133,7 +179,31 @@ namespace denturepc.control
             {
                 context.Response.Write(new responsejson(1, "当前邮箱已注册"));
             }
+            var lisget = db.Queryable<user>().Where(it => it.email == tj_email).ToList();
 
+            if (lisget.Count ==0)
+            {
+                context.Response.Write(new responsejson(1, "推荐人邮箱不正确"));
+                return;
+            }
+            else
+            {
+                var tjlist = db.Queryable<user>().Where(it => it.tj_email == tj_email)
+                .Where("convert(varchar(10),it.addtime,120) <= convert(varchar(10),getdate(),120)")
+                .Select(it => new
+                {
+                    it.email
+                }).ToList();
+                if (tjlist.Count>=10) {
+                    context.Response.Write(new responsejson(1, "推荐人邮箱今日可用次数为0"));
+                    return;
+                }
+                foreach (var item in lisget)
+                {
+                    item.number += Convert.ToDecimal(0.1);
+                }
+                var t3 = db.Updateable(lisget).UpdateColumns(it => new { it.number }).ExecuteCommand();
+            }
 
             List<user> list = new List<user>();
             user im = new user();
@@ -142,6 +212,9 @@ namespace denturepc.control
             im.tj_email = tj_email;
             im.towpassword = towpassword;
             im.email = email;
+            im.number = 0;
+            im.type = 0;
+            im.addtime = DateTime.Now;
             list.Add(im);
             int t2 = db.Insertable(list).ExecuteCommand();
 
@@ -217,6 +290,7 @@ namespace denturepc.control
             return str;
 
         }
+
         public bool IsReusable
         {
             get

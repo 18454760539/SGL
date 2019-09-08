@@ -9,9 +9,9 @@
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header" style="background-color: #393D49;">
-            <div class="layui-logo">layui 后台布局</div>
+            <div class="layui-logo" id="geren" style="width: 305px;">AIC 个人中心</div>
             <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-right" >
+            <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
                     <a id="en" href="javascript:;">
                         <!--<img src="http://t.cn/RCzsdCq" class="layui-nav-img">-->
@@ -19,13 +19,13 @@
 
                     </a>
                     <!--<dl class="layui-nav-child">
-                        <dd><a href="">首页</a></dd>
-                        <dd><a href="">资料完善</a></dd>
-                        <dd><a href="">我的团队</a></dd>
-                        <dd><a href="">转账</a></dd>
-                        <dd><a href="">转账记录</a></dd>
-                        <dd><a href="">邀请</a></dd>
-                    </dl>-->
+                <dd><a href="">首页</a></dd>
+                <dd><a href="">资料完善</a></dd>
+                <dd><a href="">我的团队</a></dd>
+                <dd><a href="">转账</a></dd>
+                <dd><a href="">转账记录</a></dd>
+                <dd><a href="">邀请</a></dd>
+            </dl>-->
                 </li>
                 <li class="layui-nav-item"><a href="">注销</a></li>
             </ul>
@@ -108,6 +108,19 @@
             form = layui.form;
             $ = layui.jquery;
             layer = layui.layer;
+            let gr = document.getElementById("geren");
+             $.ajax({
+                type: 'post',
+                url: '/control/indexcontrol.ashx?functiontype=all',
+                cache: false,
+                data: {
+                    email: em[0]
+                },
+                dataType: 'json',
+                success: function (data) {
+                    gr.innerText = "AIC 个人中心（ID：" + data.data[0].ID + "）";
+                },
+            });
         });
         let em = decodeURI(document.cookie).split('=');
         var aObj = document.getElementById("en");
