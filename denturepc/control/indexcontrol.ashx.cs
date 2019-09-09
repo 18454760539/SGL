@@ -189,7 +189,7 @@ namespace denturepc.control
             else
             {
                 var tjlist = db.Queryable<user>().Where(it => it.tj_email == tj_email)
-                .Where("convert(varchar(10),it.addtime,120) <= convert(varchar(10),getdate(),120)")
+                .Where("convert(varchar(10),addtime,120) <= convert(varchar(10),getdate(),120)")
                 .Select(it => new
                 {
                     it.email
